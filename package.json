@@ -1,0 +1,15 @@
+{
+  "name": "image-search-abstraction-layer",
+  "version": "1.0.0",
+  "description": "an abstraction layer atop the google search API",
+  "main": "server.js",
+  "author": "Jasim Taqi",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "express": "^4.15.2",
+    "google-images": "^2.1.0",
+    "google-search": "0.0.5",
+    "mongoose": "^4.9.0"
+  }
+}
