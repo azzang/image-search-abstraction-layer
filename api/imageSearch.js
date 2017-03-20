@@ -1,16 +1,15 @@
-var GoogleImages = require('google-images');
-var client = new GoogleImages(process.env.CX, process.env.API_KEY);
-var Search = require('../Search');
+const GoogleImages = require('google-images');
+const Search = require('../Search');
 
-function sendImageData(err, search) {
-  if (err) return res.json({ error: err.message });
-  this.res.json(this.images.map(function(img) {
-    return {
-      url: img.url ? img.url : null,
-      snippet: img.description ? img.description : null,
-      thumbnail: img.thumbnail && img.thumbnail.url ? img.thumbnail.url : null
-    };
-  }));
+const client = new GoogleImages(process.env.CX, process.env.API_KEY);
+
+function sendImageData(err) {
+  if (err) return this.res.json({ error: err.message });
+  this.res.json(this.images.map(img => ({
+    url: img.url ? img.url : null,
+    snippet: img.description ? img.description : null,
+    thumbnail: img.thumbnail && img.thumbnail.url ? img.thumbnail.url : null,
+  })));
 }
 
 function saveSearch(images) {
@@ -19,9 +18,9 @@ function saveSearch(images) {
   sendImageData.bind(this));
 }
 
-module.exports = function(req, res) {
-  var page = /^\d+$/.test(req.query.offset) ? Number(req.query.offset) : 0;
+module.exports = (req, res) => {
+  const page = /^\d+$/.test(req.query.offset) ? Number(req.query.offset) : 0;
   client.search(req.params.query, { page })
     .then(saveSearch.bind({ req, res }))
-    .catch(function(err) { res.json({ error: err.message }); });
+    .catch((err) => { res.json({ error: err.message }); });
 };

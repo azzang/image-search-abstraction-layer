@@ -1,9 +1,9 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-var searchSchema = new Schema({
+const Schema = mongoose.Schema;
+const searchSchema = new Schema({
   query: String,
-  time: Date
+  time: Date,
 });
 
 mongoose.Promise = require('bluebird');

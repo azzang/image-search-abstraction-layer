@@ -1,6 +1,6 @@
-var router = require('express').Router();
-var handleImageSearchRequest = require('./imageSearch');
-var handleRecentSearchRequest = require('./recentSearches');
+const router = require('express').Router();
+const handleImageSearchRequest = require('./imageSearch');
+const handleRecentSearchRequest = require('./recentSearches');
 
 router.get('/imagesearch/:query', handleImageSearchRequest);
 router.get('/latest/imagesearch', handleRecentSearchRequest);

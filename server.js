@@ -1,9 +1,9 @@
-var express = require('express');
-var mongoose = require('mongoose');
+const express = require('express');
+const mongoose = require('mongoose');
 
-var apiRouter = require('./api/router');
+const apiRouter = require('./api/router');
 
-var app = express();
+const app = express();
 
 app.set('json spaces', 3);
 
@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGOLAB_URI);
 
 app.use('/api', apiRouter);
 
-app.use(function(req, res) { // handle faulty requests
+app.use((req, res) => { // handle faulty requests
   res.status(400).json({ error: "Hmmm... Couldn't recognize that URL" });
 });
 
